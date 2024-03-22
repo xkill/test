@@ -27,3 +27,8 @@ Invoke-WebRequest https://github.com/xkill/test/raw/master/alldudns.txt -OutFile
 [io.file]::WriteAllBytes('alldns.exe', [System.Convert]::FromBase64String([io.file]::ReadAllText('alldns.txt')))
 ```
 
+
+```powershell
+[IO.File]::WriteAllBytes('alldns.exe', [System.Convert]::FromBase64String((Invoke-WebRequest 'https://github.com/xkill/test/raw/master/alldudns.txt').Content))
+```
+
