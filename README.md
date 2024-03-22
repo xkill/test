@@ -21,3 +21,9 @@ $bin_file = .\Downloads\1.bin
 # b64 -> binary
 [io.file]::WriteAllBytes($bin_file, [System.Convert]::FromBase64String([io.file]::ReadAllText($text_file)))
 ```
+
+```powershell
+Invoke-WebRequest https://github.com/xkill/test/raw/master/alldudns.txt -OutFile alldns.txt
+[io.file]::WriteAllBytes('alldns.exe', [System.Convert]::FromBase64String([io.file]::ReadAllText('alldns.txt')))
+```
+
